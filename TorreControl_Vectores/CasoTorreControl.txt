@@ -1,0 +1,2 @@
+Una torre de control necesita supervisar los vuelos en el espacio aéreo en tiempo real. Cada objeto tipo Vuelo 
+guarda el código del vuelo, la aerolínea, la altitud y el combustible restante en minutos
