@@ -9,3 +9,5 @@ guarda el código del vuelo, la aerolínea, la altitud y el combustible restante
    * Modificar la clase Vuelo el atributo nombreAerolinea cambiarlo por codAerolinea 
    * Elaborar un método que permita consultar los datos de un vuelo a través del código de la aerolínea
    * Llevar el pseudocódigo a Java
+
+3. se solicita para trabajo independiente que se cree método que permita validar que el código de una aerolinea que se va a almacenar en el vector de vuelos exista primeramente en el vector de aerolineas
