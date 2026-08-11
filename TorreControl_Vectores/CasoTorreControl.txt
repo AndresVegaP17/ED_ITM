@@ -1,2 +1,11 @@
+1. En la primera sesiòn se planteo el siguiente problema:
+
 Una torre de control necesita supervisar los vuelos en el espacio aéreo en tiempo real. Cada objeto tipo Vuelo 
 guarda el código del vuelo, la aerolínea, la altitud y el combustible restante en minutos
+
+2. En la segunda sesión Se dejó como trabajo independiente seguir trabajando el problema planteado
+   * Elaborar un método que indique cual es el promedio de la cantidad de combustible de los vuelos
+   * Crear la clase Aerolínea con los siguientes caracteristicas: codAerolinea, nombre, país, tipoAerolinea( solo puede almacenar estos valores carga, comercial, privado)
+   * Modificar la clase Vuelo el atributo nombreAerolinea cambiarlo por codAerolinea 
+   * Elaborar un método que permita consultar los datos de un vuelo a través del código de la aerolínea
+   * Llevar el pseudocódigo a Java
