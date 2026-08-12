@@ -1,1 +1,13 @@
+► Actividad ◄
 
+Construir una calculadora que permita realizar una operación después de que el usuario le provea dos números. Las operaciones que debe realizar son las siguientes:
+
+1. suma
+2. resta 
+3. multiplicación
+4. división
+5. potencia 
+6. raíz de un número
+
+Se debe crear el modelo que se necesita para el desarrollo del programa, aplicando los conceptos trabajados hasta
+la fecha
