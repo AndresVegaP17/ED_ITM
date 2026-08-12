@@ -1,0 +1,124 @@
+Clase Abstracta Calculadora
+
+   protegido real n1,n2
+
+  Calculadora()
+
+  Fin Método
+  
+  publico abstracto operación();
+
+  publico vacio método MostrarResultado()
+     imprimir ("el resultado es: "+ operación())
+  FinMetodo
+Fin Clase 
+******************************************************************************************  
+Clase Suma hereda de Calculadora
+
+   Suma(real n1, real n2)
+      super(n1,n2)
+   finSuma
+
+   publico real operación()
+     retornar n1 + n2
+   fin Método
+
+FinClase
+******************************************************************************************
+Clase Resta hereda de Calculadora
+
+   Resta(real n1, real n2)
+      super(n1,n2)
+   finResta
+
+   publico real operación()
+     retornar n1 - n2
+   fin Método
+
+FinClase
+******************************************************************************************
+Clase Multiplicacion hereda de Calculadora
+
+   Multiplicacion(real n1, real n2)
+      super(n1,n2)
+   finMultiplicacion
+
+   publico real operación()
+     retornar n1 * n2
+   fin Método
+
+FinClase
+
+******************************************************************************************
+Clase Division hereda de Calculadora
+
+   Division(real n1, real n2)
+      super(n1,n2)
+   finResta
+
+   publico real operación()
+     si(n2 == 0)entonces
+       imprimir("ERROR!")
+          retornar 0
+      sino 
+       retornar n1 / n2
+     finSi
+   fin Método
+FinClase
+
+******************************************************************************************
+publico clase AppCalculadora 
+   publico estatico vacio Principal() 
+     entero sw =1;
+     entero op = 0;
+       mientras(sw==1)haga
+         menu();
+         lea op 
+         eleccion(op);
+         imprimir("Desea realizar otra operacion ║║ 1.Si ║║ 2.No ║║");
+         lea sw
+       FinMientras
+  FinMetodoPrincipal
+
+  publico estatico vacio menu()
+        imprimir("********CALCULADORA*************");
+        imprimir("** 1. Suma                    **");
+        imprimir("** 2. Resta                   **");
+        imprimir("** 3. Multiplicacion          **");
+        imprimir("** 4. Division                **");
+        imprimir("********************************");   
+  FinMetodo    
+ 
+ publico estatico vacio eleccion(int op)
+   real n1 = 0, n2 = 0;  
+   imprimir("ingrese n1: ");
+   lea n1 
+   imprimir("ingrese n2: ");
+   lea n2 
+   segun(op)
+     caso 1:
+            Calculadora cs = nuevo Suma(n1,n2);
+            cs.operacion();
+            cs.mostrarResultado();
+          romper;
+     caso 2:
+            Calculadora cr = nuevo Resta(n1,n2);
+            cr.operacion();         
+            cr.mostrarResultado();
+          romper;
+     caso 3:
+            Calculadora cm = nuevo Multiplicacion(n1,n2);
+            cm.operacion();        
+            cm.mostrarResultado();
+           romper;
+     caso 4:
+            Calculadora cd = nuevo Division(n1,n2);
+            cd.operacion();       
+            cd.mostrarResultado();
+          romper;
+      en otro caso:
+          imprimir("Opcion no identificada");   
+          romper;
+    FinSegun    
+ FinMetodo       
+FinClase 
