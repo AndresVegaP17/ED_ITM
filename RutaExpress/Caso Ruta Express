@@ -1,0 +1,26 @@
+Caso de Estudio: Sistema de Gestión de Logística y Envíos "RutaExpress"
+
+La empresa de logística "RutaExpress" requiere diseñar el núcleo de su nuevo sistema de software para gestionar el transporte de mercancías a nivel nacional.
+
+1. Gestión de Personal (Empleados)
+Todos los trabajadores registrados en el sistema poseen un documento de identidad (DNI), nombre completo y sueldo base. La empresa clasifica a sus empleados en dos tipos principales:
+    ●	Conductores: Tienen asignado un número de licencia de conducción y una categoría.
+    ●	Administrativos: Tienen asignada un área de trabajo (por ejemplo: "Contabilidad", "Servicio al Cliente").
+
+2. Flota de Vehículos y Asignación
+La empresa cuenta con una flota de vehículos. De cada vehículo se registra la placa, el modelo y la capacidad de carga en toneladas. Un Conductor puede tener asignado un Vehículo para sus rutas (un vehículo solo es operado por un conductor a la vez, aunque un conductor podría estar temporalmente sin vehículo asignado).
+
+3. Órdenes de Envío y Paquetes
+Cuando un cliente solicita un servicio, se genera una Orden de Envío. La Orden de Envío contiene un código único, la fecha de emisión y el estado actual (por ejemplo: "En Tránsito", "Entregado").
+Toda Orden de Envío está conformada de manera obligatoria por uno o varios Paquetes. Un Paquete no existe de forma independiente en el sistema sin una Orden de Envío asociada; si una orden es anulada o eliminada del sistema, todos los paquetes vinculados a esa orden se eliminan automáticamente. De cada Paquete se conoce su peso, descripción y valor declarado.
+
+4. Clientes y Órdenes
+Los Clientes (quienes poseen NIT/DNI, nombre y teléfono) registran y son propietarios de las Órdenes de Envío. Un cliente puede registrar múltiples órdenes a lo largo del tiempo, y cada orden pertenece a un único cliente.
+
+5. Instrucciones para el Estudiante
+    1.	Identifique las clases principales, sus atributos y los métodos básicos (getters/setters o métodos de negocio).
+    2.	Identifique y represente en un diagrama de clases UML las siguientes relaciones:
+    ○	Herencia (Generalización / Especialización).
+    ○	Asociación (especificando las multiplicidades correspondientes).
+    ○	Composición (Relación todo-parte con dependencia de ciclo de vida).
+    3.	Indique la multiplicidad/cardinalidad en cada extremo de las relaciones (1, 0..1, 1..*, *).
