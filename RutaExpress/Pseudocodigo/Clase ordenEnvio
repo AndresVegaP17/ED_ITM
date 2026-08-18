@@ -1,4 +1,4 @@
-publico class OrdenEnvio 
+publico clase OrdenEnvio 
     privado cadena codigo;
     privado fecha fechaEmision;
     privado cadena estado;
