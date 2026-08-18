@@ -1,0 +1,5 @@
+clase abstracta Empleado
+   publico Cadena cedula
+   publico Cadena nombre
+   publico real sueldo
+   
