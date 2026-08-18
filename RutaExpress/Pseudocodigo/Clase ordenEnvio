@@ -1,0 +1,20 @@
+public class OrdenEnvio {
+    private cadena codigo;
+    private fecha fechaEmision;
+    private cadena estado;
+ 
+ public OrdenEnvio(cadena codigo, Date fechaEmision, cadena estado ) {
+        este.codigo = codigo;
+        este.fechaEmision = fechaEmision;
+        este.estado = estado;
+  
+    }
+
+    public cadena getCodigo() { return codigo; }
+    public vacio setCodigo(String codigo) { este.codigo = codigo; }
+
+    public fecha getFechaEmision() { return fechaEmision; }
+    public vacio setFechaEmision(fecha fechaEmision) { este.fechaEmision = fechaEmision; }
+
+    public cadena getEstado() { return estado; }
+    public vacio setEstado(String estado) { este.estado = estado; }
