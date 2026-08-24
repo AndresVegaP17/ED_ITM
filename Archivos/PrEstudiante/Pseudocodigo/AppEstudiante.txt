@@ -6,7 +6,7 @@ Clase AppEstudiante
   estatico CRUDCurso crudC = nuevo CRUDCurso()
   estatico CRUDBoletin crudB = nuevo CRUDBoletin()
 
-  publico estatico vacio principal(Cadena[] args)
+  publico estatico vacio principal()
     Menu m = nuevo Menu()
     entero op
     imprimir(menuPrincipal())
