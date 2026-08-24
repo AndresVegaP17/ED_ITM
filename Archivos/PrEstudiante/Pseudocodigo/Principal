@@ -3,7 +3,7 @@ publico Clase AppEstudiante
     //Estudiante obj;
     estatico Archivo objArchivo = nuevo Archivo();
     estatico CRUDEstudiante crudE = nuevo CRUDEstudiante();
-    publico estatico vacio principal(Cadena[] args)
+    publico estatico vacio principal()
        menuArchivoEstudiante();    
     FinMetodo
     publico estatico Cadena menuArchivoE() 
