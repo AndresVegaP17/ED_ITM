@@ -43,15 +43,14 @@ public class Archivo
         
         return mensaje;
     }
-   
-   public Aspirante[] leerAspirante()
+   public Cliente[] leerCliente()
     {
-        int cl = contadorLineas("DatosEstudiante.txt");
-        Aspirante vecA[];
-        vecA = new Aspirante[cl];
+        int cl = contadorLineas("DatosClientes.txt");
+        Cliente vecC[];
+        vecC = new Cliente[cl];
         String registro;
         String vec[];
-        vec = new String[12];
+        vec = new String[3];
        try
         {
            int i = 0;
@@ -62,20 +61,11 @@ public class Archivo
                //  private String tipoDoc, numDoc,estadoCivil,lugarNacimiento,nombreAcudiente, telAcudiente;
                //  private int estrato;
               vec = registro.split(separador);
-               String tipoDoc = vec[0];
-               String numDoc = vec[1];
-               String nombre = vec[2];
-               String apellido = vec[3];
-               String correo = vec[4];
-               String tel = vec[5];
-               int edad = Integer.parseInt(vec[6]);
-               int estrato = Integer.parseInt(vec[7]);
-               String estadoCivil = vec[8];
-               String lugarNacimiento = vec[9];
-               String nombreAcudiente = vec[10];
-               String telAcudiente = vec[11];
-               Aspirante objA = new Aspirante (tipoDoc,numDoc,nombre,apellido,correo,tel,edad,estrato,estadoCivil,lugarNacimiento,nombreAcudiente,telAcudiente);
-               vecA[i] = objA;
+               String cedula = vec[0];
+               String nombre = vec[1];
+               String telefono = vec[2];
+               Cliente objC = new Cliente (cedula,nombre,telefono);
+               vecC[i] = objC;
                i++;
                cl--;  
             }
@@ -85,8 +75,9 @@ public class Archivo
         {
          objException.getMessage();          
         }
-        return vecA;
+        return vecC;
     }
+   
    
   
   public String abrirModoLectura(String ruta)
