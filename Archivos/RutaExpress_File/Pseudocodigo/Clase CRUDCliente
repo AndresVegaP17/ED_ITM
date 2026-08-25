@@ -14,11 +14,15 @@ Clase CRUDCliente
    FinMetodo
 
    publico vacio IngresarRegistroCliente(Archivo arch, Cadena cc)
-     1. abrir archivo mode Escritura
-     2. crear el objeto que vamos a guardar
+   //  1. abrir archivo mode Escritura
+        arch.abrirArchivoModoEscritura("DatosClientes.txt")
+    // 2. crear el objeto que vamos a guardar
+       Cliente c = nuevo Cliente()
+       c = c.ingresarDatos(cc)
      3. escribir en el archivo
+      
      4. cerrar el archivo en modo EScritura
-    arch
+   
 
 
    FinMetodo
