@@ -8,11 +8,12 @@ public class CRUDCliente
   }
   public void ingresarRegistro(Archivo arch, String cc)
    {
-      //  1. abrir archivo mode Escritura
-       arch.abrirModoEscritura("DatosClientes.txt");
+
        int cl = arch.contadorLineas("DatosClientes.txt");
        Cliente[] vecC =  new Cliente[cl];
+       arch.abrirModoLectura("DatosClientes.txt");
        vecC = arch.leerCliente();
+       arch.cerrarModoLectura();
        int i = 0;
        boolean sw = false;
        while(i<cl)
@@ -24,8 +25,10 @@ public class CRUDCliente
         }   
         i++;
        }    
-       if(!sw)
+       if(!sw)1||(cl == 0)
        {  
+        //  1. abrir archivo mode Escritura
+         arch.abrirModoEscritura("DatosClientes.txt"); 
         // 2. crear el objeto que vamos a guardar
          Cliente c = new Cliente();
          c = c.ingresarDatos(cc);
