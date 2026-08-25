@@ -17,15 +17,31 @@ Clase CRUDCliente
    //  1. abrir archivo mode Escritura
         arch.abrirArchivoModoEscritura("DatosClientes.txt")
      // 1.1 validar que la cedula no se encuentre en el archivo
-         
-    // 2. crear el objeto que vamos a guardar
-       Cliente c = nuevo Cliente()
-       c = c.ingresarDatos(cc)
-    // 3. escribir en el archivo
-        String registro = c.convertirCadena()
-        arch.escribir(registro)
-    // 4. cerrar el archivo en modo EScritura
-         arch.cerrarModoEscritura()
-
+         tenemos que recorrer el archivo para llevarlo a un vector tipo Cliente
+         recorrer el vector para identificar que la cedula ingresada no se encuentre
+         registrada en el archivo
+        entero cl =  arch.contadorLineas("DatosClientes.txt")
+        Cliente[] vecC = new Cliente[cl]
+        vecC = arch.leerCliente()
+        entero i = 0
+        booleano sw =  falso
+        mientras(i < cl)haga
+          si(cedula == vecC[i].obtenerCedula())entonces
+             sw = verdadero
+             romper
+          finSi
+          i++
+        finMientras
+        si(!sw)entonces 
+         // 2. crear el objeto que vamos a guardar
+           Cliente c = nuevo Cliente()
+           c = c.ingresarDatos(cc)
+         // 3. escribir en el archivo
+            String registro = c.convertirCadena()
+           arch.escribir(registro)
+        // 4. cerrar el archivo en modo EScritura
+           arch.cerrarModoEscritura()
+        sino
+          imprimir("la cedula ya se encuentra registrada")
 
    FinMetodo
