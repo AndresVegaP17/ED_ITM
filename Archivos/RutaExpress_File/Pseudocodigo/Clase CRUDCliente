@@ -4,15 +4,16 @@ Clase CRUDCliente
    FinMetodo
 
    publico vacio IngresarRegistroCliente(Archivo arch, Cadena cc)
-   //  1. abrir archivo mode Escritura
-        arch.abrirArchivoModoEscritura("DatosClientes.txt")
+
      /* 1.1 validar que la cedula no se encuentre en el archivo:
          tenemos que recorrer el archivo para llevarlo a un vector tipo Cliente
          recorrer el vector para identificar que la cedula ingresada no se encuentre
          registrada en el archivo */
         entero cl =  arch.contadorLineas("DatosClientes.txt")
+        arch.abrirModoLectura("DatosClientes.txt")
         Cliente[] vecC = new Cliente[cl]
         vecC = arch.leerCliente()
+        arch.cerrarModoLectura()
         entero i = 0
         booleano sw =  falso
         mientras(i < cl)haga
@@ -22,7 +23,9 @@ Clase CRUDCliente
           finSi
           i++
         finMientras
-        si(!sw)entonces 
+        si(!sw)||(cl == 0)entonces 
+         //  1. abrir archivo mode Escritura
+           arch.abrirArchivoModoEscritura("DatosClientes.txt")
          // 2. crear el objeto que vamos a guardar
            Cliente c = nuevo Cliente()
            c = c.ingresarDatos(cc)
