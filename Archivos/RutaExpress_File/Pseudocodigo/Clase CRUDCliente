@@ -16,13 +16,16 @@ Clase CRUDCliente
    publico vacio IngresarRegistroCliente(Archivo arch, Cadena cc)
    //  1. abrir archivo mode Escritura
         arch.abrirArchivoModoEscritura("DatosClientes.txt")
+     // 1.1 validar que la cedula no se encuentre en el archivo
+         
     // 2. crear el objeto que vamos a guardar
        Cliente c = nuevo Cliente()
        c = c.ingresarDatos(cc)
-     3. escribir en el archivo
-      
-     4. cerrar el archivo en modo EScritura
-   
+    // 3. escribir en el archivo
+        String registro = c.convertirCadena()
+        arch.escribir(registro)
+    // 4. cerrar el archivo en modo EScritura
+         arch.cerrarModoEscritura()
 
 
    FinMetodo
