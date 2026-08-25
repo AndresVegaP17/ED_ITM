@@ -6,12 +6,21 @@ public class Cliente {
     private String nombre;
     private int telefono;
 
-    public Cliente(String cedula, String nombre, int telefono) {
+    public Cliente(String cedula, String nombre, int telefono) 
+    {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
     }
-
+    public Cliente ingresarDatos(String cedula)
+    {
+       Scanner sc = new Scanner(System.in);
+       System.out.println("ingrese el nombre del cliente: ");
+       nombre = sc.next();
+       System.out.println("ingrese el telefono del cliente: ");
+       telefono = sc.next();
+       return new Cliente(cedula, nombre, telefono);   
+    }
     public void asignarCedula(String cedula) {
         this.cedula = cedula;
     }
