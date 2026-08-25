@@ -14,7 +14,11 @@ Clase CRUDCliente
    FinMetodo
 
    publico vacio IngresarRegistroCliente(Archivo arch, Cadena cc)
-     1. validar si el archivo existe    
+     1. abrir archivo mode Escritura
+     2. crear el objeto que vamos a guardar
+     3. escribir en el archivo
+     4. cerrar el archivo en modo EScritura
+    arch
 
 
    FinMetodo
