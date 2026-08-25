@@ -37,6 +37,6 @@ public class Cliente {
     }
 
     public String convertirCadena() {
-        return "Cliente = { cedula: " + cedula + " nombre: " + nombre + " telefono: " + telefono + " } ";
+         return cedula + "|" + nombre + "|" + telefono ;
     }
 }
