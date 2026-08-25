@@ -1,1 +1,20 @@
+Clase Arvhivo
+    abrirArchivoModoEscritura = File  - FileWriter -> BufferWriter  
+    abrirArchivoModoLectura =  BuefferReader
+    cerrarArchivoModoEscritura = 
+    cerrarArchivoModoLectura = 
+    leerCliente
+    contadorLineas
 
+
+
+Clase CRUDCliente
+
+   publico CRUDCliente()
+   FinMetodo
+
+   publico vacio IngresarRegistroCliente(Archivo arch, Cadena cc)
+     1. validar si el archivo existe    
+
+
+   FinMetodo
