@@ -1,13 +1,3 @@
-Clase Arvhivo
-    abrirArchivoModoEscritura = File  - FileWriter -> BufferWriter  
-    abrirArchivoModoLectura =  BuefferReader
-    cerrarArchivoModoEscritura = 
-    cerrarArchivoModoLectura = 
-    leerCliente
-    contadorLineas
-
-
-
 Clase CRUDCliente
 
    publico CRUDCliente()
@@ -16,10 +6,10 @@ Clase CRUDCliente
    publico vacio IngresarRegistroCliente(Archivo arch, Cadena cc)
    //  1. abrir archivo mode Escritura
         arch.abrirArchivoModoEscritura("DatosClientes.txt")
-     // 1.1 validar que la cedula no se encuentre en el archivo
+     /* 1.1 validar que la cedula no se encuentre en el archivo:
          tenemos que recorrer el archivo para llevarlo a un vector tipo Cliente
          recorrer el vector para identificar que la cedula ingresada no se encuentre
-         registrada en el archivo
+         registrada en el archivo */
         entero cl =  arch.contadorLineas("DatosClientes.txt")
         Cliente[] vecC = new Cliente[cl]
         vecC = arch.leerCliente()
