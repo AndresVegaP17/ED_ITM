@@ -3,40 +3,41 @@ package RutaExpress;
 
 public class CRUDCliente 
 {
-  public Cliente[] leerCliente()
-    {
-        int cl = contadorLineas("DatosClientes.txt");
-        Cliente vecC[];
-        vecC = new Cliente[cl];
-        String registro;
-        String vec[];
-        vec = new String[3];
-       try
+  public CRUDCliente()
+  {
+  }
+  public void ingresarRegistro(Archivo arch, String cc)
+   {
+      //  1. abrir archivo mode Escritura
+       arch.abrirModoEscritura("DatosClientes.txt");
+       int cl = arch.contadorLineas("DatosClientes.txt");
+       Cliente[] vecC =  new Cliente[cl];
+       vecC = arch.leerCliente();
+       int i = 0;
+       boolean sw = false;
+       while(i<cl)
+       {
+        if(cc.equalsIgnoreCase(vecC[i].obtenerCedula()))
         {
-           int i = 0;
-            while(cl>0)
-            {
-              registro = buffer.readLine();
-              String separador = Pattern.quote("|");
-               //  private String tipoDoc, numDoc,estadoCivil,lugarNacimiento,nombreAcudiente, telAcudiente;
-               //  private int estrato;
-              vec = registro.split(separador);
-               String cedula = vec[0];
-               String nombre = vec[1];
-               String telefono = vec[2];
-               Cliente objC = new Cliente (cedula,nombre,telefono);
-               vecC[i] = objC;
-               i++;
-               cl--;  
-            }
-         buffer.close();   
-        }
-        catch(Exception objException)
-        {
-         objException.getMessage();          
-        }
-        return vecC;
-    }
-   
-    
-}
+          sw = true;
+          break;
+        }   
+        i++;
+       }    
+       if(!sw)
+       {  
+        // 2. crear el objeto que vamos a guardar
+         Cliente c = new Cliente();
+         c = c.ingresarDatos(cc);
+        //3. escribir en el archivo
+         String registro = c.toString();
+         arch.escribir(registro);
+        //4. cerrar el archivo en modo EScritura
+         arch.cerrarModoEscritura();
+       }
+       else
+       {
+           System.out.println("Cedula ya existe en el archivo");   
+       }
+   }
+}   
