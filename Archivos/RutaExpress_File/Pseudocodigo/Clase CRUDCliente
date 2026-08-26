@@ -37,7 +37,7 @@ Clase CRUDCliente
         sino
           imprimir("la cedula ya se encuentra registrada")
    FinMetodo
-publico vacio consultarCliente(Archivo arch, Cadena  cedula)
+publico vacio consultarCliente(Archivo arch, Cadena cedula)
  //1. abrir archivo en modo lectura
    arch.abrirModoLectura("DatosClientes.txt")
  //2. contar las lineas del archivo y almacenarlo en una variable
@@ -45,5 +45,18 @@ publico vacio consultarCliente(Archivo arch, Cadena  cedula)
  //3.  Crear el vector que va a almacenar los registros que hay en el archivo
     Cliente[] vecC = nuevo Cliente[cl]  
  //4. Pasar los registros del archivo al vector
-    
+    vecC = arch.leerClientes()
+ //5. recorrer el vector para identificar si la cedula existe
+    boolean sw = verdadero
+   para(i=0; i < vecC.tamaño; i++)haga
+    si(cedula == vecC[i].obtenerCedula())entonces
+       imprimir("usuario existente")
+       imprimir ("Datos = {cedula: ", cedula, " nombre: ", vecC[i].obtenerNombre(), " telefono: ", vecC[i].obtenerTelefono(), "} "
+       boolean sw = falso
+       romper
+   finSi
+ finPara
+    si(sw)entonces
+     imprimir("usuario no existe")
+    finSi
 finMetodo
