@@ -36,5 +36,14 @@ Clase CRUDCliente
            arch.cerrarModoEscritura()
         sino
           imprimir("la cedula ya se encuentra registrada")
-
    FinMetodo
+publico vacio consultarCliente(Archivo arch, Cadena  cedula)
+ //1. abrir archivo en modo lectura
+   arch.abrirModoLectura("DatosClientes.txt")
+ //2. contar las lineas del archivo y almacenarlo en una variable
+   entero cl = arch.contadorLineas("DatosClientes.txt")
+ //3.  Crear el vector que va a almacenar los registros que hay en el archivo
+    Cliente[] vecC = nuevo Cliente[cl]  
+ //4. Pasar los registros del archivo al vector
+    
+finMetodo
