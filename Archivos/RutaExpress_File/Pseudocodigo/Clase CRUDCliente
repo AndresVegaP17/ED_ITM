@@ -123,3 +123,5 @@ publico vacio actualizarRegistro(Archivo arch, Cadena cedula)
  9. cerrar archivo en modo escritura
     arch.cerrarModoEscritura()
 finMetodo
+
+ojo para el martes el método de eliminar un registro por cédula!!!
