@@ -109,9 +109,17 @@ publico vacio actualizarRegistro(Archivo arch, Cadena cedula)
           un registro */
          i++
      fin Mientras
-       
- 6.Eliminar el archivo
+     
+ 6.Cerrar modo Escritura y Eliminar el archivo
+    arch.cerrarModoLectura()
+    arch.eliminarArchivo("DatosClientes.txt")
+   
  7. abrir archivo en modo escritura
+   arch.abrirModoEscritura("DatosClientes.txt")
  8. volver a crear el archivo con la información que se encuentra en el vector
+    para(Clientes c: Clientes)haga
+     arch.escribir(vecC[c].convertirCadena())
+    finPara      
  9. cerrar archivo en modo escritura
+    arch.cerrarModoEscritura()
 finMetodo
