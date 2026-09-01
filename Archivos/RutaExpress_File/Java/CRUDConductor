@@ -11,7 +11,7 @@ public class CRUDConductor {
     public CRUDConductor() {
     }
 
-    // CREATE
+    // CREAR CONDUCTOR
     public boolean crearConductor(
             String cedula,
             String nombre,
@@ -50,7 +50,7 @@ public class CRUDConductor {
         }
     }
 
-    // READ - Buscar conductor por cédula
+    // LEER ARCHIVO - Buscar conductor por cédula
     public String buscarConductor(String cedula) {
 
         File archivo = new File(ARCHIVO);
@@ -85,7 +85,7 @@ public class CRUDConductor {
         return null;
     }
 
-    // READ - Listar todos los conductores
+    // LEER - Listar todos los conductores
     public List<String> listarConductores() {
 
         List<String> conductores = new ArrayList<>();
@@ -118,7 +118,7 @@ public class CRUDConductor {
         return conductores;
     }
 
-    // UPDATE
+    // ACTUALIZACION
     public boolean actualizarConductor(
             String cedula,
             String nuevoNombre,
