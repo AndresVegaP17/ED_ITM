@@ -17,3 +17,20 @@ public class Ticket {
     public String getNombreServicio() {
         return nombreServicio;
     }
+    public double getValorServicio() {
+
+        return valorServicio;
+
+    }
+
+    public String toString() {
+
+        return "Servicio: " + nombreServicio +
+
+                " | ID: " + idServicio +
+
+                " | Valor: $" + valorServicio;
+
+    }
+
+}
