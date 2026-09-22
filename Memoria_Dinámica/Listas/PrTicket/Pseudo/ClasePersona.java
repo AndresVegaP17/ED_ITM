@@ -36,7 +36,7 @@ public class Persona {
         return ticketServicio;
     }
 
-    @Override
+    
     public String toString() {
         return "Persona{" +
                 "id=" + id +
