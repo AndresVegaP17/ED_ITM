@@ -1,0 +1,64 @@
+clase ListaSimple
+
+   privado Nodo start
+   privado Nodo end
+
+   publico vacio ListaSimple()
+      start = Nulo
+      end = Nulo
+   FinMetodo
+
+   publico vacio insertarNodoPorFinal(Objeto info)
+      si(esVacia())entonces
+         start = nuevo Nodo(info)
+         end = start
+      sino
+         este.end.asignarSig(nuevo Nodo(info))
+         este.end = este.end.obtenerSig()
+      finsi
+   FinMetodo
+
+   publico vacio insertarNodoPorInicio(Obheto info)
+      si(esVacia())entonces
+         start = nuevo Nodo(info)
+         end = start
+      sino
+         Nodo q = start
+         este.start = nuevo Nodo(info)
+         este.start.asignarSig(q)
+      finsi
+   FinMetodo
+
+   publico booleano esVacia()
+      retornar start == Nulo 
+   FinMetodo
+
+   publico vacio listarNodos()
+      si(esVacia())entonces
+         imprimir("La lista esta vacia")
+      sino
+         Nodo actual = start
+         mientras(actual <> vacio)haga
+            imprimir(actual.obtenerDato())
+            actual = actual.obtenerSig()
+         finmientras
+      finsi
+   FinMetodo
+
+ publico vacio eliminarEnd()
+    Nodo actual = start
+    Nodo aux
+    mientras(actual.obtenerSig() != nulo)haga
+      aux = actual.obtenerSig()
+      si(aux.obtenerSig() == nulo)entonces
+        end = actual
+      finSi
+      actual = actual.obtenerSig()
+    FinMientras
+FinMetodo
+
+publico vacio eliminarCabeza()
+    start = start.obtenerSig()
+FinMetodo
+
+FinClase

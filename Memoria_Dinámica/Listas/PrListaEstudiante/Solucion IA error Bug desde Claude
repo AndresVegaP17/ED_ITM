@@ -1,0 +1,121 @@
+Retomándolo: es el proyecto Pr_Estudiante (lista enlazada simple), con las clases Nodo, Estudiante, ListaSimple y AppEstudiante. 
+Ya identificamos un bug real al ejecutarlo con 5 estudiantes: se cae con NoSuchElementException 
+porque Estudiante.leerDatos() crea un Scanner nuevo cada vez en lugar de reutilizar uno solo, y eso "se traga" el input restante.
+
+¿Qué quieres retomar puntualmente?
+
+Tiene sentido, y no es que el bug no exista — es que se manifiesta distinto según cómo entra el input:
+
+Cuando yo lo ejecuté redirigiendo un archivo (< input.txt), todo el texto de los 5 estudiantes ya estaba disponible de una sola vez en el
+flujo de entrada. El primer Scanner que crea leerDatos() "adelanta lectura" (buffering) y se traga de golpe todo lo que queda disponible, 
+aunque solo use 4 datos. Al morir ese Scanner local, el resto del contenido se pierde, y el Scanner de main se queda sin nada para sw.
+En NetBeans, la entrada es interactiva: el programa se detiene y espera a que tú escribas y presiones Enter cada vez. Como no hay 
+nada "adelantado" en el buffer del sistema (nada ha sido tecleado todavía cuando se crea cada Scanner nuevo), cada Scanner solo alcanza 
+a leer justo lo que tú tecleas en ese momento. Por eso no se cae.
+
+Es decir: el error sigue ahí de fondo (crear varios Scanner sobre System.in sigue siendo mala práctica), simplemente el modo interactivo 
+de NetBeans lo "esconde" porque el timing de la entrada coincide con lo que cada Scanner necesita. Podría volver a aparecer si, 
+por ejemplo, pegas varias líneas de texto de golpe en la consola de NetBeans en vez de escribirlas una por una.
+
+¿Quieres que igual corrija esto (compartiendo un único Scanner, por ejemplo pasado como parámetro a leerDatos) para que quede robusto 
+sin importar cómo llegue la entrada, o lo dejamos así ya que en tu flujo de trabajo (NetBeans, escritura manual) no da problema?
+
+                                                  entonces  ajustame cual es la solucion muestrame la solucion que planteas
+
+
+Aquí está la solución: pasar un único Scanner (el mismo que ya existe en main) como parámetro a leerDatos(), en lugar de crear uno 
+nuevo cada vez.
+
+Estudiante.java — método leerDatos modificado:
+
+java
+public Estudiante leerDatos(Scanner sc)
+{
+  System.out.println("ingrese nombre de estudiante: ");
+  nombre = sc.nextLine();
+  System.out.println("ingrese genero de estudiante: ");
+  genero = sc.nextLine();
+  System.out.println("ingrese edad de estudiante: ");
+  edad = sc.nextInt();
+  sc.nextLine(); // limpia el salto de línea pendiente tras nextInt()
+  System.out.println("ingrese nota definitiva de estudiante: ");
+  notaDef = sc.nextDouble();
+  sc.nextLine(); // limpia el salto de línea pendiente tras nextDouble()
+  return new Estudiante(nombre, edad, genero, notaDef);
+}
+
+AppEstudiante.java — método main modificado:
+
+java
+public static void main(String[] args) 
+{
+  int sw = 1;  
+  Scanner sc = new Scanner(System.in);
+  Estudiante e = new Estudiante();
+  ListaSimple lista = new ListaSimple();
+  while(sw == 1)
+  {
+   lista.insertarNodoPorInicio(e.leerDatos(sc));
+   System.out.println("Desea ingresar otro elemento a la lista: 1-Si 2-No");
+   sw = sc.nextInt();
+   sc.nextLine(); // limpia el salto de línea pendiente
+  }   
+
+  lista.listarNodos();
+}
+
+Qué cambió y por qué:
+
+leerDatos ya no crea su propio Scanner; recibe el de main como parámetro — así no hay dos Scanner compitiendo por System.in.
+Se agregaron sc.nextLine() extra después de nextInt() y nextDouble(): estos métodos no consumen el salto de línea (\n) que queda 
+tras el número, y si no se limpia, ese \n sobrante sería leído por el siguiente sc.nextLine() como una cadena vacía — un segundo 
+bug clásico que se destapa justo al arreglar el primero.
+
+¿Quieres que lo compile y ejecute de nuevo con 5 estudiantes (simulando input por archivo) para confirmar que ya funciona correctamente?
+
+                                                 y si el scanner lo dejo global en la clase estudiante que efecto tendría
+
+Buena pregunta — depende de si lo declaras static o no, y trae otro problema aparte del original.
+
+Opción: atributo static en Estudiante
+java
+public class Estudiante 
+{
+  private static Scanner sc = new Scanner(System.in);
+  private String nombre;
+  private int edad;
+  private String genero;
+  private double notaDef;
+
+    public Estudiante leerDatos()
+    {
+      System.out.println("ingrese nombre de estudiante: ");
+      nombre = sc.nextLine();
+      // ...
+    }
+}
+
+Efecto: al ser static, se crea una sola vez para toda la clase (sin importar cuántos objetos Estudiante se instancien), así que sí 
+resuelve el choque de múltiples Scanner sobre System.in. Funciona.
+
+Pero trae un problema de diseño distinto al técnico
+Acopla el modelo a la consola. Estudiante es una clase que representa datos (nombre, edad, etc.); si además "sabe" leer desde teclado,
+mezclas dos responsabilidades (modelo + entrada/salida). Eso viola el principio de responsabilidad única — típicamente en POO esa 
+lectura debería vivir en la clase que orquesta el flujo (AppEstudiante), no en el modelo.
+Dependencia oculta. Con el Scanner como parámetro, cualquiera que lea la firma leerDatos(Scanner sc) sabe de inmediato que el método 
+necesita entrada por consola. Con el Scanner global, esa dependencia queda escondida dentro de la clase — hay que abrir el código para 
+descubrirla.
+Menos reutilizable/testeable. Si en el futuro quieres reutilizar Estudiante en un contexto distinto (una interfaz gráfica, 
+un formulario web, pruebas automatizadas), quedaría forzado a arrastrar un Scanner atado a System.in que no aplica ahí.
+Frágil si el diseño cambia. Si en algún momento decides no reutilizar el mismo objeto Estudiante en el ciclo (por ejemplo, creas 
+uno nuevo por estudiante: Estudiante e = new Estudiante(); dentro del while), con un atributo static sigue funcionando bien — pero 
+si en cambio lo hicieras no static (solo private Scanner sc = new Scanner(System.in); como atributo normal), el bug original 
+regresaría apenas crearas más de un objeto Estudiante, porque cada instancia nueva volvería a crear su propio Scanner.
+
+En resumen: el static sí "arregla" el choque, pero cambia el problema técnico por uno de diseño (acoplamiento y responsabilidad mezclada).
+Pasar el Scanner como parámetro sigue siendo la solución más limpia y es justo la práctica que normalmente se busca reforzar en un curso 
+de estructuras de datos/POO. ¿Quieres que dejemos la versión con parámetro como la definitiva, o prefieres explorar la versión static para 
+fines de comparación en clase?
+
+A tener en cuenta: Un método static es un método que pertenece a la clase en sí, no a los objetos (instancias) que se crean a partir 
+de ella.

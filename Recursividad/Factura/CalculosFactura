@@ -1,0 +1,59 @@
+publico vacio totalCompra(Archivo arch)
+  // abro el archivo en modo lectura porque necesito traer todos los registros existentes antes de poder sumarlos.
+      arch.abrirModoLectura("Factura.txt")
+  //cuento cuántas facturas hay registradas, para saber el tamaño exacto que debe tener mi vector
+      entero cf= arch.contadorLineas("Factura.txt")
+  // creo el vector del tamaño exacto según la cantidad de registros.
+      Factura\[] f= nueva Factura\[cf]
+  // cargo todos los registros del archivo dentro del vector
+      f= arch.leerFactura()
+  // ya tengo los datos en memoria, cierro el archivo.
+     arch.cerrarModoLectura()
+
+  /*imprimo el resultado, llamando a mi función recursiva desde el índice 0 (el inicio del vector), 
+    que va a ir sumando cada totalCompra hasta recorrer todo el vector*/
+    imprmir("El total de compras en las facturas es: ", calculoCompra(f, 0)) 
+
+/* calcular el valor total de un producto según los registros existentes en el archivo factura*/
+   entero codProducto
+   imprimir("ingrese el codigo del producto a consultar: ")
+   lea codProducto
+   imprmir("El total de compras en las facturas es: ", calculoTotalProducto(f, 0, codProducto)) 
+
+
+finMetodo
+
+publico real calculoCompra(factura\[] f, entero indice)
+
+    \*caso base:si el índice ya se salió del tamaño del vector, significa que ya recorrí todos los registros, 
+       así que no hay nada más que sumar y termino la recursión devolviendo 0*/
+      si(indice >= f.tamaño) entonces
+          retornar 0
+      finsi
+    // tomo el totalCompra del registro actual (la posición "indice").
+       real valor= f\[indice].obtenerTotalCompra()
+
+  /*caso recursivo: sumo el valor de esta factura con el resultado de seguir sumando el resto del vector
+   (le paso indice+1 para avanzar una posición en cada llamada)*/
+       retornar valor + Calculocompra(f, indice + 1)
+FinMetodo
+
+//Crear método que permita calcular el valor total de un producto según los registros existentes en el archivo factura.**
+
+publico real calculoTotalProducto(Factura\[] f, entero indice, entero codProducto)
+
+   \*variable donde voy a guardar el aporte de este registro a la suma (arranca en 0 por si el código 
+      de producto de esta posición no coincide con el que estoy buscando)*/
+      real valor=0
+    // caso base: si ya recorrí todo el vector, no sumo nada más
+     si(indice >= f.tamaño) entonces
+        retornar 0
+     finsi
+    \*solo si el código de producto del registro actual coincide con el que estoy buscando, tomo su totalCompra; 
+      si no coincide, valor se queda en 0 y este registro no aporta nada a la suma*/
+      si(codProducto == f\[indice].obtenercodProducto()) entonces
+        valor= f\[indice].obtenerTotalCompra()
+      finsi
+    //caso recursivo: sumo lo que aportó este registro (0 o su valor) con lo que sigan aportando los registros siguientes
+        retornar valor + calculoCompra(f, indice + 1, codProducto)
+finMetodo

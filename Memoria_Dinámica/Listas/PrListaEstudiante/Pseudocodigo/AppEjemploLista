@@ -1,0 +1,13 @@
+Clase AppEjemploLista
+ Publico Estatico vacio Principal()
+   entero sw = 1
+   Estudiante e = nuevo Estudiante()
+   ListaSimple lista = nuevo ListaSimple()
+   mientras(sw == 1)haga
+    lista.insertarNodoPorInicio(e.leerDatos())
+    imprimir("Desea ingresar otro elemento a la lista: 1-Si 2-No")
+    lea sw
+   finmientras
+   lista.listarNodos()
+  FinMetodo
+Fin Clase

@@ -1,0 +1,18 @@
+Elaborar un proyecto en Java que permita construir Sistema de gestión de tickets en una notaría
+La notaria presta los siguientes servicios:
+-  Autenticaciones: 15000
+-  Registro Civil: 70000
+-  Inmuebles: 350000
+-  Matrimonio: 700000
+-  Escrituración: 150000
+-  Poderes: 25000
+la estructura de cada ticket es la inicial del servicio en Mayuscula y un numero del 0 al 99 (esto debe ser validado). 
+No se debe repetir el mismo ticket en la lista
+Persona {id, tipoDoc, nombre, idServicio, ticketServicio}
+Servicio ={idServicio, nombreServicio, valorServicio}
+
+Crear la clase Persona, ticket tomar la clase Nodo ya existente en otros proyectos, la clase Lista y una clase ManejoTicket 
+que va a realizar las siguientes acciones:
+ 1. consultar la cantidad de recaudo por un servicio
+ 2. Eliminar un ticket existente en la lista 
+ 3. Calcular el total recaudado por los servicios prestados en la lista 

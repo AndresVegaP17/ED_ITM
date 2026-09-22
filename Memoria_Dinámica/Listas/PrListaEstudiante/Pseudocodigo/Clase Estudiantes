@@ -1,0 +1,66 @@
+clase Estudiante
+
+   privado cadena nombre
+   privado entero edad
+   privado cadena genero
+   privado real notaDef
+
+   publico vacio Estudiante(Cadena nombre, Entero edad, Cadena genero, real notaDef)
+      este.nombre = nombre
+      este.edad = edad
+      este.genero = genero
+      este.notaDef = notaDef
+   FinMetodo
+
+   publico vacio Estudiante()
+   FinMetodo
+
+   publico Estudiante leerDatos()
+      imprimir("ingrese nombre de estudiante: ")
+      lea nombre
+      imprimir("ingrese genero de estudiante: ")
+      lea genero
+      imprimir("ingrese edad de estudiante: ")
+      lea edad
+      imprimir("ingrese nota definitiva de estudiante: ")
+      lea notaDef
+      retornar nuevo Estudiante(nombre, edad, genero, notaDef)
+   FinMetodo
+
+   publico cadena obtenerNombre()
+      retornar este.nombre
+   FinMetodo
+
+   publico vacio asignarNombre(Cadena nombre)
+      este.nombre = nombre
+   FinMetodo
+
+   publico entero obtenerEdad()
+      retornar este.edad
+   FinMetodo
+
+   publico vacio asignarEdad(entero edad)
+      este.edad = edad
+   FinMetodo
+
+   publico cadena obtenerGenero()
+      retornar este.genero
+   FinMetodo
+
+   publico vacio asignarGenero(Cadena genero)
+      este.genero = genero
+   FinMetodo
+
+   publico reaal obtenerNotaDef()
+      retornar este.notaDef
+   FinMetodo
+
+   publico vacio asignarNotaDef(real notaDef)
+      este.notaDef = notaDef
+   FinMetodo
+
+   publico cadena aTexto()
+      retornar "Estudiante{nombre=" + este.nombre + ", edad=" + este.edad + ", genero=" + este.genero + ", notaDef=" + este.notaDef + "}"
+   FinMetodo
+
+FinClase

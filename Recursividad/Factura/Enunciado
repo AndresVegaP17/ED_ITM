@@ -1,0 +1,8 @@
+Del Archivo Factura identificar cuanto es el total de compras realizadas para los registros de dicho archivo.
+Los atributos de este archivo son: numFactura,codProducto,cantidad,valorProducto,totalCompra
+
+Tener en cuenta:
+
+    crear la clase Archivo
+    crear la clase Factura
+    En el archivo CalculosFactura se encuentra la solución a este problema
