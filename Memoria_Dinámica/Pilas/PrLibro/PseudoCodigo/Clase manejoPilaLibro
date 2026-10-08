@@ -1,0 +1,125 @@
+Clase ManejoPila
+
+    publico Pila ingresarPila(Pila objPila)
+        entero op
+        entero cod, anioPublicacion, numPag, codEditorial
+        cadena nombre, genero
+        real valor
+        imprimir("Desea ingresar un Libro a la pila: 1. Si   2. No")
+        lea op
+        CRUDEditorial crudE = nuevo CRUDEditorial()
+        Archivo arch = nuevo Archvivo()
+        mientras(op==1)haga
+            imprimir("Ingrese el código del nuevo Libro:")
+            lea cod
+            si(Buscar(objPila,cod)==falso)entonces
+                lea nombre
+                lea anioPublicacion
+                lea genero
+                lea numPag
+                lea valor
+                lea codEditorial
+                si(crudE.buscar(arch,codEditorial))entonces
+                   Editorial objE = nuevo Editorial(codigo, nombre, anioPublicacion, genero, numPag, valor, codEditorial)
+                   objPila.Push(objE)
+                  sino
+                    mientras(!crudE.buscar(arch,codEditorial))haga
+                        escriba(" el codigo no existe, intentar con otro codigo")
+                        lea codEditorial
+                   finMientras
+                   Editorial objE = nuevo Editorial(codigo, nombre, anioPublicacion, genero, numPag, valor, codEditorial)
+                   objPila.Push(objE)
+                finSi
+               sino
+                imprimir("Libro ya existe en la pila")
+            Fin_Si
+            imprimir("Desea ingresar otro Libro a la pila? 1. Si   2. No")
+            lea op
+        Fin_Mientras
+        retornar objPila
+    FinMetodo
+    publico cadena Imprimir(Pila objPila)
+        Pila pilaAux = nuevo Pila(objPila.obtenerMaxsize())
+        cadena texto = ""
+        Libro info
+        mientras(objPila.IsEmpty()==falso)haga
+            info = (Libro)objPila.Pop()
+            texto = texto + info.aTexto() + "\n"
+            pilaAux.Push(info)
+        Fin_Mientras
+        retornoPilaAux(objPila,pilaAux)
+        si(texto=="")entonces
+            texto = "La pila está vacía"
+        Fin_Si
+        retornar texto
+    FinMetodo
+
+    publico vacio retornoPilaAux(Pila objPila, Pila objPilaAux)
+        mientras(objPilaAux.IsEmpty()==falso)haga
+            objPila.Push(objPilaAux.Pop())
+        Fin_Mientras
+    FinMetodo
+
+    publico booleano Buscar(Pila objPila, entero cod)
+        Pila pilaAux = nuevo Pila(objPila.obtenerMaxsize())
+        booleano resp = falso
+        Libro datoL
+        mientras(objPila.IsEmpty()==falso)haga
+            datoL = (Libro)objPila.Pop()
+            si(datoL.obtenerCodigo()==cod)entonces
+                resp = verdadero
+             Fin_Si
+             pilaAux.Push(datoL)
+         Fin_Mientras
+         retornoPilaAux(objPila,pilaAux)
+         retornar resp
+    FinMetodo
+
+* Identificar cuál es el libro con mas valor
+    publico vacio ConsultarLibroMasValor(Pila objPila)
+        Pila pilaAux = nuevo Pila(objPila.obtenerMaxsize())
+        Objeto aux = nulo
+        Libro info = (Libro)objPila.Pop()
+        pilaAux.Push(info)
+        entero codLibro = info.obtenerCodigo()
+        cadena nombreLibro = info.obtenerNombre()
+        real valorMaxLibro = info.obtenerValor()
+        mientras(objPila.IsEmpty()==falso)haga
+            info = (Libro)objPila.Pop()
+            si(info.obtenervalor()>valorMaxLibro)entonces
+               codLibro = info.obtenerCodigo()
+               nombreLibro = info.obtenerNombre()
+               valorMaxLibro = info.obtenerValor()
+             finSi
+               pilaAux.Push(info)
+        Fin_Mientras
+        retornoPilaAux(objPila,pilaAux)
+        imprimir("Libro con mas valor")
+        imprimir("--------------------------")
+        imprimir("codigo Libro:  ", codLibro)
+        imprimir("nombre:", nombreLibro)
+        imprimir("valor: ", valorMaxLibro)
+    FinMetodo
+
+ * Cantidad de libros de un género consultado por el usuario
+
+ * promedio de Páginas de los libros de una editorial 
+publico real calculoPromedioPaginas(Pila objPila)
+  Pila pilaAux = nueva Pila(objPila.obtenerSize())
+  real acumPaginas = 0
+  Libro l = nuevo Libro()
+  mientras(objPila.isEmpty() == Falso)haga
+     l = (Libro)objPila.pop()
+     acumPaginas = acumPaginas + l.obtenerNumPaginas()
+     pilaAux.push(l)
+  fin Mientras
+   devolverAux(pilaAux, objPila)
+   retornar acumPaginas / objPila.obtenerSize()
+ FinMetodo 
+ * Consultar los libros publicados en un año que ingrese el usuario+
+    
+
+
+
+FinClase
+
