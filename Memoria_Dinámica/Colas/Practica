@@ -156,7 +156,6 @@ En una pila enlazada, pop debe actualizar la cima y gestionar correctamente el n
 
 3. Colas
 Una cola sigue FIFO: First In, First Out. Los elementos salen en el mismo orden en que entraron.
-Guía de pseudocódigo: archivos, pilas y colas 
 
 3.1 Crear una cola desde un archivo
 publico Cola crearCola(Archivo objA)
